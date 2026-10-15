@@ -1,9 +1,6 @@
 name: switch-release
 
 on:
-  push:
-    tags:
-      - "v*.*"
   workflow_dispatch:
 
 jobs:
@@ -35,33 +32,8 @@ jobs:
           make pfbneo.nro
           mv src/cores/pfbneo/pfbneo.nro $GITHUB_WORKSPACE
 
-      - name: Build pgen
-        run: |
-          cd $GITHUB_WORKSPACE/cmake-build
-          make pgen.nro
-          mv src/cores/pgen/pgen.nro $GITHUB_WORKSPACE
-
-      - name: Build pnes
-        run: |
-          cd $GITHUB_WORKSPACE/cmake-build
-          make pnes.nro
-          mv src/cores/pnes/pnes.nro $GITHUB_WORKSPACE
-
-      - name: Build psnes
-        run: |
-          cd $GITHUB_WORKSPACE/cmake-build
-          make psnes.nro
-          mv src/cores/psnes/psnes.nro $GITHUB_WORKSPACE
-
-      - name: Build pgba
-        run: |
-          cd $GITHUB_WORKSPACE/cmake-build
-          make pgba.nro
-          mv src/cores/pgba/pgba.nro $GITHUB_WORKSPACE
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: ${{ startsWith(github.ref, 'refs/tags/') && !env.ACT }}
+      - name: Upload nro
+        uses: actions/upload-artifact@v4
         with:
-          files: '*.nro'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: pfbneo-nro
+          path: pfbneo.nro
