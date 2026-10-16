@@ -48,7 +48,7 @@ PEMUConfig::PEMUConfig(Renderer *renderer, const std::string &name, int version)
         "FONT_SCALING", {"0", "1", "2", "3", "4", "5"}, 0,
         UI_FONT_SCALING, PEMU_CONFIG_RESTART_NEEDED
     });
-    main.addOption({"VIDEO_SNAP_DELAY", {"3", "5", "7", "10"}, 1, UI_VIDEO_SNAP_DELAY});
+    main.addOption({"VIDEO_SNAP_DELAY", {"1", "3", "5", "7", "10"}, 0, UI_VIDEO_SNAP_DELAY});
 
     // build  skin list
     std::vector<std::string> skins;
